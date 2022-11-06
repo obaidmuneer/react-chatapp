@@ -3,7 +3,14 @@ import io from 'socket.io-client'
 import './App.css';
 import Chats from './components/chats';
 
-const socket = io('http://localhost:8080');
+let uri;
+if (window.location.protocol === 'http:') {
+  console.log('http');
+  uri = 'http://localhost:8080'
+}else{
+  uri = 'https://realtime-chatapp-server-production.up.railway.app'
+}
+const socket = io(uri);
 
 function App() {
   const [name, setName] = useState('')
